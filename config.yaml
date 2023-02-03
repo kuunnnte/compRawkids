@@ -1,27 +1,18 @@
 baseURL: http://example.org/
 languageCode: en-us
 title: Rawkids Studio
+sectionPagesMenu: main
 
 # menu
 menu:
   main:
-    - identifier: work
-      title: work
-      name: Work
-      url: /work/
+    - identifier: home
+      title: home
+      name: home
+      url: /
       weight: 10
     - identifier: about
       title: about
-      name: About
+      name: about
       url: /about/
-      weight: 20
-    - identifier: blog
-      title: blog
-      name: Blog
-      url: /blog/
-      weight: 30
-    - identifier: contact
-      title: contact
-      name: Contact
-      url: /contact/
-      weight: 40
+      weight: 600

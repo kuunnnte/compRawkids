@@ -1,20 +1,64 @@
 <section class="uk-section uk-section-secondary uk-padding-remove-vertical">
   <div class="uk-container">
-    <nav class="uk-navbar-container uk-navbar-transparent uk-margin" uk-navbar>
-      <div class="uk-navbar-center">
-        <div class="uk-navbar-left">
-          <a class="uk-navbar-item uk-logo" href="#">Logo</a>
+    {{ range .Site.Pages }}
+    <a href="{{ .Permalink }}">{{ .Name }}</a>
+    {{ end }}
+    <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+      <div class="uk-navbar-left">
+        <div class="uk-navbar-nav">
+          <a href="" class="uk-navbar-item uk-logo uk-visible@m">
+            <img
+              src="/img/index/logo.png"
+              width="36"
+              height="auto"
+              alt=""
+              uk-img
+            />
+          </a>
+          <a
+            href="#"
+            class="uk-navbar-item uk-icon-link uk-margin-small-right uk-hidden@m"
+            uk-icon="search"
+          ></a>
         </div>
-        <div class="uk-navbar-right">
-          <ul class="uk-navbar-nav">
-            {{ range .Site.Pages }}
-            <a href="{{ .RelPermalink }}"> {{ .Title }} </a>
-            {{ end }} {{ $currentPage := . }} {{ range .Site.Menus.main }}
-            <li class="">
-              <a href="{{ .URL }}"> {{ .Name }} </a>
-            </li>
-
-            {{ end }}
+      </div>
+      <div class="uk-navbar-center">
+        <div class="uk-navbar-nav">
+          <a href="" class="uk-navbar-item uk-logo uk-hidden@m">
+            <img
+              src="/img/index/logo.png"
+              width="28"
+              height="auto"
+              alt=""
+              uk-img
+            />
+          </a>
+        </div>
+      </div>
+      <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav uk-visible@m">
+          {{ $currentPage := . }} {{ range .Site.Menus.main }}
+          <li
+            class='{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} uk-active{{end}}'
+          >
+            <a href="{{ .URL }}"> {{ .Name }} </a>
+          </li>
+          {{ end }}
+        </ul>
+        <a
+          href="#drop"
+          class="uk-icon-link uk-margin-small-right uk-hidden@m"
+          uk-icon="menu"
+        ></a>
+        <div id="drop" uk-dropdown="mode: click">
+          <ul class="uk-nav uk-dropdown-nav uk-light">
+            <li class="uk-active"><a href="#">Active</a></li>
+            <li><a href="#">Item</a></li>
+            <li class="uk-nav-header">Header</li>
+            <li><a href="#">Item</a></li>
+            <li><a href="#">Item</a></li>
+            <li class="uk-nav-divider"></li>
+            <li><a href="#">Item</a></li>
           </ul>
         </div>
       </div>
