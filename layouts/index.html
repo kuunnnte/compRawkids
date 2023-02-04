@@ -1,6 +1,76 @@
 {{ define "main" }}
+<div
+  class="uk-cover-container uk-background-secondary"
+  uk-height-viewport="offset-top: true;"
+>
+  <!-- <div class="uk-overlay uk-position-center">
+    <h1 class="uk-text-uppercase">
+      you <span class="uk-text-bold">visualize</span> it, we
+      <span class="uk-text-bold">improvise</span> it.
+    </h1>
+  </div> -->
 
-<section class="uk-section uk-section-default">
+  <video
+    src="/vid/webExport.mp4"
+    autoplay
+    loop
+    muted
+    playsinline
+    uk-cover
+  ></video>
+  <div class="uk-position-cover uk-flex uk-flex-center uk-flex-middle">
+    <h1
+      class="uk-text-uppercase uk-light uk-heading-small uk-text-center uk-hidden@m"
+    >
+      you <span class="uk-text-bold">visualize</span> it
+      <span class="uk-visible@m">―</span> we
+      <span class="uk-text-bold">improvise</span> it
+    </h1>
+    <h1
+      class="uk-text-uppercase uk-light uk-heading-medium uk-text-center uk-visible@m"
+    >
+      you <span class="uk-text-bold">visualize</span> it
+      <span class="uk-visible@m">―</span> we
+      <span class="uk-text-bold">improvise</span> it
+    </h1>
+  </div>
+  <div class="uk-position-cover uk-flex uk-flex-center uk-flex-middle">
+    <img
+      style="opacity: 0.1"
+      src="/img/index/logo.svg"
+      width="720"
+      height="720"
+      alt=""
+      uk-svg
+    />
+  </div>
+  <div
+    class="uk-position-bottom-center uk-position-large uk-flex uk-flex-center uk-flex-middle"
+  >
+    <a class="object" href="#intro" uk-scroll>
+      <span class="uk-light" uk-icon="icon: chevron-down; ratio: 3.5"></span>
+    </a>
+  </div>
+</div>
+<style>
+  .object {
+    animation: MoveUpDown 1.75s infinite ease-in-out;
+    position: relative;
+    left: 0;
+    bottom: 0;
+  }
+
+  @keyframes MoveUpDown {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(20px);
+    }
+  }
+</style>
+<section id="intro" class="uk-section uk-section-default">
   <div class="uk-container">
     <div class="uk-child-width-1-1@m" uk-grid>
       <div>
@@ -27,5 +97,12 @@
     </div>
   </div>
 </section>
-
+<section class="uk-section uk-section-secondary">
+  <div
+    class="uk-text-center"
+    uk-parallax="start: 100%; end: 100%; stroke: 100%;"
+  >
+    <img src="/img/index/star.svg" width="350" height="340" alt="" uk-svg />
+  </div>
+</section>
 {{ end }}

@@ -1,30 +1,37 @@
-<section class="uk-section uk-section-secondary uk-padding-remove-vertical">
+<section
+  class="uk-section uk-section-secondary uk-padding-remove-vertical uk-preserve-color uk-light target"
+  uk-sticky="show-on-up: true; animation: uk-animation-slide-top position: top;"
+>
   <div class="uk-container">
-    {{ range .Site.Pages }}
-    <a href="{{ .Permalink }}">{{ .Name }}</a>
-    {{ end }}
     <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
       <div class="uk-navbar-left">
+        <a href="/" class="uk-navbar-item uk-logo uk-visible@m">
+          <img
+            src="/img/index/logoFullWhite.png"
+            width="108"
+            height="auto"
+            alt=""
+            uk-img
+          />
+        </a>
+        <a
+          href="#modalNavbar"
+          class="uk-icon-link uk-margin-small-right uk-hidden@m"
+          uk-icon="menu"
+          uk-toggle="target: #modalNavbar"
+        >
+        </a>
         <div class="uk-navbar-nav">
-          <a href="" class="uk-navbar-item uk-logo uk-visible@m">
-            <img
-              src="/img/index/logo.png"
-              width="36"
-              height="auto"
-              alt=""
-              uk-img
-            />
-          </a>
-          <a
+          <!-- <a
             href="#"
             class="uk-navbar-item uk-icon-link uk-margin-small-right uk-hidden@m"
             uk-icon="search"
-          ></a>
+          ></a> -->
         </div>
       </div>
       <div class="uk-navbar-center">
         <div class="uk-navbar-nav">
-          <a href="" class="uk-navbar-item uk-logo uk-hidden@m">
+          <a href="/" class="uk-navbar-item uk-logo uk-hidden@m">
             <img
               src="/img/index/logo.png"
               width="28"
@@ -46,22 +53,80 @@
           {{ end }}
         </ul>
         <a
-          href="#drop"
-          class="uk-icon-link uk-margin-small-right uk-hidden@m"
-          uk-icon="menu"
-        ></a>
-        <div id="drop" uk-dropdown="mode: click">
+          class="uk-navbar-toggle uk-navbar-item uk-visible@m uk-text-baseline"
+          href="#modalSearch"
+          uk-search-icon
+          uk-toggle
+        >
+        </a>
+        <a
+          class="uk-navbar-toggle uk-navbar-item uk-hidden@m"
+          href="#modalSearch"
+          uk-search-icon
+          uk-toggle
+        >
+        </a>
+
+        <!-- start of dropdown -->
+        <!-- <div
+          class="uk-background-secondary uk-light"
+          id="drop"
+          uk-dropdown="mode: click; target: !.target; pos: bottom-right; animation: uk-animation-slide-top-small; stretch: x;"
+        >
           <ul class="uk-nav uk-dropdown-nav uk-light">
-            <li class="uk-active"><a href="#">Active</a></li>
-            <li><a href="#">Item</a></li>
-            <li class="uk-nav-header">Header</li>
-            <li><a href="#">Item</a></li>
-            <li><a href="#">Item</a></li>
-            <li class="uk-nav-divider"></li>
-            <li><a href="#">Item</a></li>
+            {{ $currentPage := . }} {{ range .Site.Menus.main }}
+            <li
+              class='{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} uk-active{{end}}'
+            >
+              <a class="uk-text-uppercase" href="{{ .URL }}"> {{ .Name }} </a>
+            </li>
+            {{ end }}
           </ul>
-        </div>
+        </div> -->
+        <!-- end of dropdown -->
       </div>
     </nav>
+    <div id="modalSearch" class="uk-modal-full uk-modal" uk-modal>
+      <div
+        class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle uk-background-secondary"
+        uk-height-viewport
+      >
+        <button
+          class="uk-modal-close-full uk-background-secondary uk-close-large"
+          type="button"
+          uk-close
+        ></button>
+        <form class="uk-search uk-search-large">
+          <input
+            class="uk-search-input uk-text-center"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            autofocus
+          />
+        </form>
+      </div>
+    </div>
+    <div id="modalNavbar" class="uk-modal uk-modal-full" uk-modal>
+      <div
+        class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle uk-background-secondary"
+        uk-height-viewport
+      >
+        <button
+          class="uk-modal-close-full uk-background-secondary uk-close-large"
+          type="button"
+          uk-close
+        ></button>
+        <ul class="uk-nav-primary uk-nav-center" uk-nav>
+          {{ $currentPage := . }} {{ range .Site.Menus.main }}
+          <li
+            class='{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} uk-active{{end}}'
+          >
+            <a class="uk-text-uppercase" href="{{ .URL }}"> {{ .Name }} </a>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
